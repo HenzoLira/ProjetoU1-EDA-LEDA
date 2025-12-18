@@ -1,8 +1,10 @@
 package algoritmosDeOrdenacaoSlide;
 
+import model.Estudante;
+
 public class MergeSort {
 
-	public static void sort(int[] array) {
+	public static void sort(Estudante[] array) {
 		int n = array.length;
 		
 		if(array == null || n<2) {
@@ -13,13 +15,13 @@ public class MergeSort {
 	}
 	
 	
-	private static void mergeSort(int[] array, int left, int right) {
+	private static void mergeSort(Estudante[] array, int left, int right) {
 		
 		if (left >= right) {						// caso base, se a sub-lista tem 0 ou 1 elemento ela está ordenada
 			return;
 		}
 		
-		int mid = (left + (right - left))/2;		// calcula o ponto médio
+		int mid = left + (right - left)/2;			// calcula o ponto médio
 		
 		mergeSort(array, left, mid);				// ordena a metade da esquerda (left até mid)
 		mergeSort(array, mid+1, right);				// ordena a metade da direita
@@ -28,10 +30,10 @@ public class MergeSort {
 	}
 	
 	
-	private static void merge(int[] array, int left, int mid, int right) {
+	private static void merge(Estudante[] array, int left, int mid, int right) {
 		
 		int size = right - left + 1;				// tamanho do auxiliar, o numero total de elementos entre left e right, incluindo eles
-		int[] aux = new int[size];
+		Estudante[] aux = new Estudante[size];
 		
 		for(int k = 0; k < size; k++) { 			// k é o índece de destino no aux[] (0,1,...)
 			aux[k] = array[left + k];				// left+k é o índice de origem no array original
@@ -42,7 +44,7 @@ public class MergeSort {
 		int k = left;								// ponteiro de escrita no array original
 		
 		while(i <= mid - left && j < size) {		// continua enuanto houver elementos nas duas sublistas do auxiliar
-			if (aux[i] <= aux[j]) {
+			if (aux[i].compareTo(aux[j]) <= 0) {
 				array[k] = aux[i];					// quando o da esquerda é menor/igual, copia para o array original
 				i++;								// avança ponteiro da esquerda
 			} else {

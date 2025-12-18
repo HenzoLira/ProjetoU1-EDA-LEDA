@@ -2,11 +2,12 @@ package algoritmosOdenacaoOtimizados;
 
 import java.util.Random;
 
+import model.Estudante;
 import util.Swap;
 
 public class QuickSortShuffle { // embaralha o array antes de iniciar
 
-	public static void sort(int[] array) {
+	public static void sort(Estudante[] array) {
 
 		shuffle(array);							// aplica o shuffle no array
 		
@@ -14,7 +15,7 @@ public class QuickSortShuffle { // embaralha o array antes de iniciar
 		
 	}
 
-	private static void shuffle(int[] array) {
+	private static void shuffle(Estudante[] array) {
 		
 		Random random = new Random();
 		
@@ -24,7 +25,7 @@ public class QuickSortShuffle { // embaralha o array antes de iniciar
 		}
 	}
 
-	private static void quickSort(int[] array, int left, int right) {
+	private static void quickSort(Estudante[] array, int left, int right) {
 
 		if (left < right) {						// caso base: se a lista sublista tem 0 ou 1 elemento
 			int pivot = partition(array, left, right); // posiciona o pivô no lugar correto e retorna seu índice
@@ -34,18 +35,18 @@ public class QuickSortShuffle { // embaralha o array antes de iniciar
 		}
 	}
 
-	private static int partition(int[] array, int left, int right) {
+	private static int partition(Estudante[] array, int left, int right) {
 
-		int pivo = array[left]; 				// primeiro elemento (hoare com pivo fixo no inicio)
+		Estudante pivo = array[left]; 				// primeiro elemento (hoare com pivo fixo no inicio)
 		int i = left + 1; 						// ponteiro da esquerda
 		int j = right; 							// ponteiro da direita
 
 		while (i <= j) { 						// continua enquanto não se cruzarem
-			while (i <= right && array[i] <= pivo) { // laço para avançar i, enquanto [i] <= pivo e nao ultrapassar o
+			while (i <= right && array[i].compareTo(pivo) <= 0) { // laço para avançar i, enquanto [i] <= pivo e nao ultrapassar o
 												// limite
 				i++;
 			}
-			while (array[j] > pivo && j > left) { // laço para recuar j, enquanto [j] > pivo e nal ultrapassar o pivo
+			while (array[j].compareTo(pivo) > 0 && j > left) { // laço para recuar j, enquanto [j] > pivo e nal ultrapassar o pivo
 				j--;
 			}
 
